@@ -591,7 +591,10 @@ export class GDBDebugSession extends LoggingDebugSession {
                         if (!this.args.variableUseNaturalFormat) {
                             commands.push(...this.formatRadixGdbCommand());
                         }
-                        commands.push(...this.serverController.initCommands());
+                        
+                        const initCommands = this.args.overrideInitCommands != null ?
+                                this.args.overrideInitCommands.map(COMMAND_MAP) : this.serverController.initCommands();
+                            commands.push(...initCommands);
 
                         if (attach) {
                             commands.push(...this.args.preAttachCommands.map(COMMAND_MAP));
