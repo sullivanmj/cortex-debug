@@ -620,7 +620,9 @@ export class GDBDebugSession extends LoggingDebugSession {
 
                         // This is the last of the place where ports are allocated
                         this.sendEvent(new GenericCustomEvent('post-start-server', this.args));
-                        commands.push(...this.serverController.initCommands());
+                        const initCommands = this.args.overrideInitCommands != null ?
+                                this.args.overrideInitCommands.map(COMMAND_MAP) : this.serverController.initCommands();
+                        commands.push(...initCommands);
 
                         if (attach) {
                             commands.push(...this.args.preAttachCommands.map(COMMAND_MAP));

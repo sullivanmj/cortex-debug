@@ -1678,6 +1678,12 @@
                                 "items": "string",
                                 "description": "Additional GDB Commands to be executed at the end of the reset sequence. When not defined this will have the same value of postRestartCommands."
                             },
+                            "overrideInitCommands": {
+                                "default": null,
+                                "type": "array",
+                                "items": "string",
+                                "description": "You can use this to property to override the commands that are normally executed as part of initializing the connection to the target."
+                            },
                             "overrideLaunchCommands": {
                                 "default": null,
                                 "type": "array",
